@@ -55,13 +55,16 @@ export function createInitialState(): SaveState {
   inventory[0] = { item: 'wood_axe', qty: 1 };
   inventory[1] = { item: 'stone_pickaxe', qty: 1 };
   inventory[2] = { item: 'health_potion', qty: 3 };
+  inventory[3] = { item: 'fishing_rod', qty: 1 };
+  inventory[4] = { item: 'hunting_bow', qty: 1 };
+  inventory[5] = { item: 'arrow', qty: 12 };
   return {
     version: SAVE_VERSION,
     position: { x: 1120, y: 1728 },
     health: 100, energy: 100, mana: 50, level: 1, xp: 0, coins: 25,
     inventory,
     equipment: { weapon: 'wood_sword', shield: null, head: null, chest: null, legs: null, boots: null, accessory: null },
-    hotbar: ['wood_sword', 'wood_axe', 'stone_pickaxe', 'health_potion', '', '', '', '', ''],
+    hotbar: ['wood_sword', 'wood_axe', 'stone_pickaxe', 'health_potion', 'hunting_bow', 'fishing_rod', '', '', ''],
     skills: { melee: 0, archery: 0, mining: 0, woodcutting: 0, smithing: 0, survival: 0 },
     metrics: {}, quests: [], structures: [], resources: {}, enemies: {}, openedChests: [], visited: [], loot: [],
     time: 0, selected: 0,

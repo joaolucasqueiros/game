@@ -1,0 +1,11 @@
+#game canvas{image-rendering:auto!important;touch-action:none}
+.loading-3d{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at 40% 35%,#52665b,#13251f);color:#eee6cc;font:13px Arial;text-align:center;padding:30px}
+.loading-3d>span{font:11px Georgia;letter-spacing:5px}.loading-3d h1{font:48px Georgia;font-weight:400;margin:26px}.loading-3d p{color:#bdc8bc}
+#survival-overlay{position:absolute;left:30px;bottom:65px;z-index:3;pointer-events:none;width:285px}#survival-overlay[hidden]{display:none}
+.environment-status{padding:15px 18px;border-left:2px solid #d2bc86;background:linear-gradient(90deg,#152920ed,#15292099);box-shadow:0 8px 26px #1117;border-radius:2px;color:#f4ead3}
+.environment-status.water{border-color:#8ec9c9;background:linear-gradient(90deg,#173137f5,#173137a0)}.environment-status strong{font:21px Georgia;display:block;margin:9px 0}.environment-status small{display:block;line-height:1.6;font-size:11px;color:#c2ccbc}
+.activity-meter{height:5px;background:#d1c7a329;margin:14px 0 10px;overflow:hidden}.activity-meter i{display:block;height:100%;background:#aec6af;transition:width .1s linear}.activity-meter.bite i{background:#ecc775}.activity-meter.breath i{background:#86c8dd}
+#world-floats{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:4}.world-float{position:absolute;left:0;top:0;white-space:nowrap;font:bold 13px Arial;text-shadow:0 1px 4px #11291e,1px 1px #11291e,-1px -1px #11291e;will-change:transform,opacity}
+.edition-3d .title-shade{background:linear-gradient(90deg,#13231f55,#13231f08 50%,#12251b70)}.edition-3d .title-card{background:#14291fe8;backdrop-filter:blur(8px)}.edition-3d .title-overline{letter-spacing:3px}.edition-3d .region-banner small{max-width:390px;line-height:1.7}.edition-3d .top-bar{background:#14241de8;backdrop-filter:blur(10px)}
+@media(max-width:1000px){#survival-overlay{left:15px;width:220px;bottom:100px}.environment-status{padding:12px}.environment-status strong{font-size:18px}.environment-status small{font-size:10px}}
+@media(max-width:620px){#survival-overlay{left:12px;bottom:105px;width:185px}.environment-status strong{font-size:16px}.loading-3d h1{font-size:32px}}

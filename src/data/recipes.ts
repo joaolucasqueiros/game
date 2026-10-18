@@ -1,6 +1,8 @@
 import type { Recipe } from '../types';
 
 export const RECIPES: Recipe[] = [
+  { id: 'fishing_rod', item: 'fishing_rod', qty: 1, costs: { wood: 3, fiber: 2 }, station: 'hand', level: 1 },
+  { id: 'cooked_meat', item: 'cooked_meat', qty: 1, costs: { raw_meat: 1, wood: 1 }, station: 'furnace', level: 1 },
   { id: 'workbench', item: 'workbench', qty: 1, costs: { wood: 8, stone: 4 }, station: 'hand', level: 1 },
   { id: 'wood_sword', item: 'wood_sword', qty: 1, costs: { wood: 5, stone: 2 }, station: 'workbench', level: 1 },
   { id: 'wood_axe', item: 'wood_axe', qty: 1, costs: { wood: 4, stone: 3 }, station: 'hand', level: 1 },

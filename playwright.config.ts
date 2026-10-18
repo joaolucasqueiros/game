@@ -6,8 +6,8 @@ const chromiumPath = process.env.CHROMIUM_PATH ?? (existsSync('/usr/bin/chromium
 export default defineConfig({
   testDir: './tests',
   outputDir: './test-results/playwright',
-  testMatch: 'browser.spec.ts',
-  timeout: 240_000,
+  testMatch: 'browser3d.spec.ts',
+  timeout: 300_000,
   expect: { timeout: 8_000 },
   fullyParallel: false,
   workers: 1,
@@ -17,9 +17,9 @@ export default defineConfig({
     baseURL: 'http://127.0.0.1:5173',
     viewport: { width: 1440, height: 960 },
     headless: true,
-    actionTimeout: 12_000,
+    actionTimeout: 30_000,
     launchOptions: { executablePath: chromiumPath, args: ['--no-sandbox', '--disable-dev-shm-usage'] },
-    trace: 'retain-on-failure',
+    trace: { mode: 'retain-on-failure', screenshots: false, snapshots: true, sources: true },
     screenshot: 'only-on-failure',
   },
   webServer: {

@@ -18,6 +18,7 @@ resource('mushroom', 'Cogumelo', 'Um cogumelo do bosque. Ingrediente de poções
 resource('flower', 'Flor silvestre', 'Uma pequena flor de perfume delicado, apreciada pela curandeira.', 2);
 resource('berry', 'Fruta silvestre', 'Fruta fresca do vale, usada para preparar tônicos.', 2);
 resource('fish', 'Peixe', 'Peixe fresco dos rios e lagos. Cozinhe-o numa fornalha.', 6);
+resource('raw_meat', 'Carne de caça', 'Carne obtida ao caçar animais selvagens. Asse-a numa fornalha antes de comer.', 8);
 resource('fiber', 'Fibra vegetal', 'Fibras flexíveis para cordas, arcos e cercas.', 2);
 resource('fang', 'Presa', 'Troféu de um predador selvagem, valorizado pelos caçadores.', 7);
 resource('leather', 'Couro', 'Couro curtido para botas e componentes de armadura.', 6);
@@ -30,6 +31,8 @@ resource('silver_bar', 'Barra de prata', 'Prata refinada para equipamentos mági
 resource('gold_bar', 'Barra de ouro', 'Ouro refinado, precioso e maleável.', 48, 'rare');
 
 all.push(
+  { id: 'fishing_rod', name: 'Vara de pesca', description: 'Lance perto da água. Quando o peixe morder, pressione E dentro da janela de fisgada.', kind: 'tool', rarity: 'common', stack: 1, value: 14, slot: 'weapon', tool: 'rod', tier: 1, damage: 1, range: 130, cooldown: 700 },
+  { id: 'cooked_meat', name: 'Carne assada', description: 'Uma refeição de caça. Restaura 40 de vida e 55 de energia.', kind: 'consumable', rarity: 'common', stack: 20, value: 16, heal: 40, energy: 55 },
   { id: 'wood_sword', name: 'Espada de madeira', description: 'Uma lâmina de treino. Rápida, mas pouco eficaz contra armaduras.', kind: 'weapon', rarity: 'common', stack: 1, value: 12, slot: 'weapon', weaponType: 'sword', damage: 8, range: 54, cooldown: 420, tier: 1 },
   { id: 'copper_sword', name: 'Espada de cobre', description: 'Uma lâmina forjada no vale. Um avanço importante para o aventureiro.', kind: 'weapon', rarity: 'uncommon', stack: 1, value: 40, slot: 'weapon', weaponType: 'sword', damage: 15, range: 58, cooldown: 380, tier: 1 },
   { id: 'iron_sword', name: 'Espada de ferro', description: 'Fio equilibrado e aço resistente para enfrentar os perigos das minas.', kind: 'weapon', rarity: 'rare', stack: 1, value: 85, slot: 'weapon', weaponType: 'sword', damage: 24, range: 62, cooldown: 360, tier: 2 },

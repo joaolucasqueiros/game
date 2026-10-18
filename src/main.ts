@@ -1,31 +1,21 @@
-import Phaser from 'phaser';
 import { GameModel } from './systems/GameModel';
-import { loadGame } from './systems/SaveSystem';
-import { WorldScene } from './scenes/WorldScene';
+import { loadGame,hasSave } from './systems/SaveSystem';
+import { Materials } from './three/Materials';
+import { Game3D } from './three/Game3D';
 import { GameUI } from './ui/GameUI';
 import './ui/style.css';
+import './three/style3d.css';
 
-const model = new GameModel(loadGame() ?? undefined);
-let ui: GameUI;
-const scene = new WorldScene(model, () => {
-  ui = new GameUI(model, {
-    start: fresh => scene.startGame(fresh), save: () => scene.save(), respawn: () => scene.respawn(),
-    select: index => scene.select(index), build: type => scene.build.select(type), removeBuild: () => scene.build.select('__remove'),
-    craft: id => scene.craft(id), interact: () => scene.interact(), pause: paused => { scene.paused = paused; },
-    sound: () => { scene.audio.enabled = model.state.settings.sound; scene.audio.music = model.state.settings.music; scene.audio.volume = model.state.settings.volume; scene.audio.unlock(); scene.audio.play('ui'); },
-    transfer: (index, toStorage) => { if (scene.openStorage) scene.build.transfer(scene.openStorage, index, toStorage); },
-    fishing: () => scene.interact(),
+async function boot(){
+  const loading=document.createElement('div');loading.className='loading-3d';loading.innerHTML='<span>CRÔNICAS DE FERRO</span><h1>Um novo horizonte.</h1><p>Preparando o mundo 3D, materiais e iluminação…</p>';document.querySelector('#game')!.append(loading);
+  const materials=await new Materials().load(),model=new GameModel(loadGame()??undefined),game=new Game3D(model,materials);
+  await game.renderer.compileAsync(game.scene,game.camera);
+  game.renderer.render(game.scene,game.camera);
+  const ui=new GameUI(model,{
+    start:fresh=>game.startGame(fresh),save:()=>game.save(),respawn:()=>game.respawn(),select:i=>game.select(i),build:type=>game.selectBuild(type),removeBuild:()=>game.selectBuild('__remove'),craft:id=>game.craft(id),interact:()=>game.interact(),pause:p=>{game.paused=p;},
+    sound:()=>{game.audio.enabled=model.state.settings.sound;game.audio.music=model.state.settings.music;game.audio.volume=model.state.settings.volume;game.audio.unlock();game.audio.play('ui');},transfer:(i,to)=>game.transfer(i,to),fishing:()=>game.beginFishing(),
   });
-  scene.ui = ui;
-  model.onNotice = message => ui.toast(message);
-});
-const game = new Phaser.Game({
-  type: Phaser.AUTO, parent: 'game', backgroundColor: '#14251e', pixelArt: true, roundPixels: true,
-  antialias: false, powerPreference: 'high-performance',
-  scale: { mode: Phaser.Scale.RESIZE, width: window.innerWidth, height: window.innerHeight },
-  render: { transparent: false, antialias: false, pixelArt: true, roundPixels: true },
-  scene: [scene],
-});
-
-// Development-only inspection hook used by the browser smoke suite.
-if (import.meta.env.DEV) Object.assign(window, { __chronicles: { game, scene, model, get ui() { return ui; } } });
+  game.ui=ui;model.onNotice=m=>ui.toast(m);ui.showTitle(hasSave());document.body.classList.add('edition-3d');
+  if(import.meta.env.DEV)Object.assign(window,{__chronicles:{game,scene:game,model,ui,edition:'3d'}});
+}
+void boot().catch(error=>{console.error(error);document.querySelector('#game')!.innerHTML='<div class="loading-3d"><h1>Não foi possível iniciar o 3D.</h1><p>Ative WebGL e a aceleração de hardware no navegador. Atualize a página para tentar novamente.</p></div>';});

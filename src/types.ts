@@ -9,7 +9,7 @@ export interface ItemDef {
   id: string; name: string; description: string; kind: ItemKind; rarity: Rarity;
   stack: number; value: number; slot?: EquipmentSlot; damage?: number; defense?: number;
   range?: number; cooldown?: number; weaponType?: 'sword' | 'axe' | 'spear' | 'bow' | 'staff';
-  tool?: 'axe' | 'pickaxe'; tier?: number; heal?: number; energy?: number; mana?: number; structure?: string;
+  tool?: 'axe' | 'pickaxe' | 'rod'; tier?: number; heal?: number; energy?: number; mana?: number; structure?: string;
 }
 export interface Recipe { id: string; item: string; qty: number; costs: Record<string, number>; station: Station; level: number }
 export interface StructureDef { id: string; name: string; item: string; width: number; height: number; solid: boolean; station?: Station; description: string }
